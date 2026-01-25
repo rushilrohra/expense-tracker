@@ -1,0 +1,68 @@
+<div class="reset-container">
+    <div class="reset-bg-effects">
+        <div class="glow-circle circle-1"></div>
+        <div class="glow-circle circle-2"></div>
+    </div>
+
+    <div class="reset-card">
+        <div class="card-header">
+            <div class="icon-wrapper">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="url(#gradient-reset)"/>
+                    <defs>
+                        <linearGradient id="gradient-reset" x1="2" y1="2" x2="22" y2="22">
+                            <stop offset="0%" stop-color="#667eea"/>
+                            <stop offset="100%" stop-color="#764ba2"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+            </div>
+            <h2>Reset Password</h2>
+            <p class="subtitle">Create a strong new password to secure your account</p>
+        </div>
+
+        <form [formGroup]="resetPwdGroup" (ngSubmit)="resetPassword()" class="reset-form">
+            <div class="form-group">
+                <label for="newPassword">New Password</label>
+                <div class="input-wrapper">
+                    <svg class="input-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M5 8V6C5 3.79086 6.79086 2 9 2H11C13.2091 2 15 3.79086 15 6V8M4 8H16C17.1046 8 18 8.89543 18 10V16C18 17.1046 17.1046 18 16 18H4C2.89543 18 2 17.1046 2 16V10C2 8.89543 2.89543 8 4 8Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                    <input type="password" id="newPassword" formControlName="newPassword" placeholder="Enter new password">
+                </div>
+                <div *ngIf="isFormControlError('newPassword')" class="error-message">
+                    Password must be at least 6 characters
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="confirmPassword">Confirm Password</label>
+                <div class="input-wrapper">
+                    <svg class="input-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M5 8V6C5 3.79086 6.79086 2 9 2H11C13.2091 2 15 3.79086 15 6V8M4 8H16C17.1046 8 18 8.89543 18 10V16C18 17.1046 17.1046 18 16 18H4C2.89543 18 2 17.1046 2 16V10C2 8.89543 2.89543 8 4 8Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                    <input type="password" id="confirmPassword" formControlName="confirmPassword" placeholder="Confirm new password">
+                </div>
+                <div *ngIf="!isPasswordMatches() && resetPwdGroup.get('confirmPassword')?.touched" class="error-message">
+                    Passwords do not match
+                </div>
+            </div>
+
+            <button type="submit" [disabled]="resetPwdGroup.invalid" class="btn-submit">
+                <span>Reset Password</span>
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M16 10C16 13.3137 13.3137 16 10 16M16 10C16 6.68629 13.3137 4 10 4M16 10H4M10 16C6.68629 16 4 13.3137 4 10M10 16V18M10 4C6.68629 4 4 6.68629 4 10M10 4V2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+        </form>
+
+        <div class="card-footer">
+            <a routerLink="/login" class="back-link">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path d="M10 12L6 8L10 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span>Back to Login</span>
+            </a>
+        </div>
+    </div>
+</div>

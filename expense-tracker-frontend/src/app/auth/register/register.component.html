@@ -1,0 +1,94 @@
+<div class="register-container">
+    <div class="register-bg-effects">
+        <div class="glow-orb orb-1"></div>
+        <div class="glow-orb orb-2"></div>
+        <div class="grid-pattern"></div>
+    </div>
+
+    <div class="register-content">
+        <div class="register-card">
+            <div class="card-header">
+                <div class="logo-section">
+                    <div class="logo-icon">
+                        <svg width="40" height="40" viewBox="0 0 32 32" fill="none">
+                            <path d="M16 2L2 9L16 16L30 9L16 2Z" fill="url(#gradient1)"/>
+                            <path d="M2 23L16 30L30 23V9L16 16L2 9V23Z" fill="url(#gradient2)" opacity="0.8"/>
+                            <defs>
+                                <linearGradient id="gradient1" x1="2" y1="2" x2="30" y2="16">
+                                    <stop offset="0%" stop-color="#667eea"/>
+                                    <stop offset="100%" stop-color="#764ba2"/>
+                                </linearGradient>
+                                <linearGradient id="gradient2" x1="2" y1="9" x2="30" y2="30">
+                                    <stop offset="0%" stop-color="#667eea"/>
+                                    <stop offset="100%" stop-color="#764ba2"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+                    <h1>Daily<span class="text-gradient">Wise</span></h1>
+                </div>
+                <h2>Create Your Account</h2>
+                <p class="subtitle">Start your journey to financial freedom today</p>
+            </div>
+
+            <form [formGroup]="RegisterFormGroup" (ngSubmit)="submitForm()" class="register-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" formControlName="name" placeholder="John Doe">
+                        <div *ngIf="isFormControlError('name')" class="error-message">
+                            Full name is required
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" formControlName="username" placeholder="johndoe">
+                        <div *ngIf="isFormControlError('username')" class="error-message">
+                            Username is required
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" formControlName="email" placeholder="you@example.com">
+                    <div *ngIf="isFormControlError('email')" class="error-message">
+                        Email is required
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" formControlName="password" placeholder="••••••••">
+                        <div *ngIf="isFormControlError('password')" class="error-message">
+                            Password is required
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="mobile">Mobile No.</label>
+                        <input type="tel" id="mobile" formControlName="mobile" placeholder="123 456 7890">
+                        <div *ngIf="isFormControlError('mobile')" class="error-message">
+                            Mobile is required
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" [disabled]="RegisterFormGroup.invalid" class="btn-submit">
+                    <span>Create Account</span>
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+
+                <p class="error-msg2">{{errorMessage}}</p>
+            </form>
+
+            <div class="card-footer">
+                <p>Already have an account? <a routerLink="/login" class="login-link">Sign in</a></p>
+            </div>
+        </div>
+    </div>
+</div>

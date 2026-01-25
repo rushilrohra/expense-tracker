@@ -1,0 +1,35 @@
+<nav class="navbar">
+    <div class="nav-container">
+        <a href="/" class="nav-brand">
+            <div class="logo-icon">
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                    <path d="M16 2L2 9L16 16L30 9L16 2Z" fill="url(#gradient1)"/>
+                    <path d="M2 23L16 30L30 23V9L16 16L2 9V23Z" fill="url(#gradient2)" opacity="0.8"/>
+                    <defs>
+                        <linearGradient id="gradient1" x1="2" y1="2" x2="30" y2="16">
+                            <stop offset="0%" stop-color="#667eea"/>
+                            <stop offset="100%" stop-color="#764ba2"/>
+                        </linearGradient>
+                        <linearGradient id="gradient2" x1="2" y1="9" x2="30" y2="30">
+                            <stop offset="0%" stop-color="#667eea"/>
+                            <stop offset="100%" stop-color="#764ba2"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+            </div>
+            <span class="logo-text">Daily<span class="text-accent">Wise</span></span>
+        </a>
+
+        <ul class="nav-menu">
+            <li class="nav-item"><a href="#" class="nav-link">Home</a></li>
+            <li class="nav-item"><a href="#" class="nav-link">Features</a></li>
+            <li class="nav-item"><a href="#" class="nav-link">Analytics</a></li>
+            <li class="nav-item"><a href="#" class="nav-link">Dashboard</a></li>
+        </ul>
+
+        <div class="nav-actions">
+            <a routerLink="/login" class="btn-login">Sign In</a>
+            <a routerLink="/register" class="btn-primary">Get Started</a>
+        </div>
+    </div>
+</nav>

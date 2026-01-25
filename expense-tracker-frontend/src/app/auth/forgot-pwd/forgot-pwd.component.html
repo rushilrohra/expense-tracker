@@ -1,0 +1,55 @@
+<div class="forgot-container">
+    <div class="forgot-bg-effects">
+        <div class="glow-circle circle-1"></div>
+        <div class="glow-circle circle-2"></div>
+    </div>
+
+    <div class="forgot-card">
+        <div class="card-header">
+            <div class="icon-wrapper">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z" fill="url(#gradient-forgot)"/>
+                    <defs>
+                        <linearGradient id="gradient-forgot" x1="2" y1="2" x2="22" y2="22">
+                            <stop offset="0%" stop-color="#667eea"/>
+                            <stop offset="100%" stop-color="#764ba2"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+            </div>
+            <h2>Forgot Password?</h2>
+            <p class="subtitle">No worries! Enter your email and we'll send you reset instructions.</p>
+        </div>
+
+        <form [formGroup]="forgotFormGroup" (ngSubmit)="sendResetLink()" class="forgot-form">
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <div class="input-wrapper">
+                    <svg class="input-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M3 5L10 10L17 5M3 5L10 13L17 5M3 5V15H17V5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <input type="email" id="email" formControlName="email" placeholder="you@example.com">
+                </div>
+                <div *ngIf="isFormControlError('email')" class="error-message">
+                    Please enter a valid email address
+                </div>
+            </div>
+
+            <button type="submit" [disabled]="forgotFormGroup.invalid" class="btn-submit">
+                <span>Send Reset Link</span>
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+        </form>
+
+        <div class="card-footer">
+            <a routerLink="/login" class="back-link">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path d="M10 12L6 8L10 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span>Back to Login</span>
+            </a>
+        </div>
+    </div>
+</div>

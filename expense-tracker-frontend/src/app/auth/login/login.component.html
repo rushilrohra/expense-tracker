@@ -1,0 +1,75 @@
+<div class="login-container">
+    <div class="login-bg-effects">
+        <div class="glow-circle circle-1"></div>
+        <div class="glow-circle circle-2"></div>
+    </div>
+
+    <div class="login-card">
+        <div class="card-header-section">
+            <div class="logo-section">
+                <div class="logo-icon">
+                    <svg width="40" height="40" viewBox="0 0 32 32" fill="none">
+                        <path d="M16 2L2 9L16 16L30 9L16 2Z" fill="url(#gradient1)"/>
+                        <path d="M2 23L16 30L30 23V9L16 16L2 9V23Z" fill="url(#gradient2)" opacity="0.8"/>
+                        <defs>
+                            <linearGradient id="gradient1" x1="2" y1="2" x2="30" y2="16">
+                                <stop offset="0%" stop-color="#667eea"/>
+                                <stop offset="100%" stop-color="#764ba2"/>
+                            </linearGradient>
+                            <linearGradient id="gradient2" x1="2" y1="9" x2="30" y2="30">
+                                <stop offset="0%" stop-color="#667eea"/>
+                                <stop offset="100%" stop-color="#764ba2"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </div>
+                <h1>Daily<span class="text-gradient">Wise</span></h1>
+            </div>
+            <h2>Welcome Back</h2>
+            <p class="subtitle">Sign in to continue managing your expenses</p>
+        </div>
+
+        <form [formGroup]="loginFormGroup" class="login-form">
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <div class="input-wrapper">
+                    <svg class="input-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M3 5L10 10L17 5M3 5L10 13L17 5M3 5V15H17V5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <input type="email" id="email" formControlName="email" placeholder="you@example.com">
+                </div>
+                <div *ngIf="isFormControlError('email')" class="error-message">
+                    Email is required
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <div class="input-wrapper">
+                    <svg class="input-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M5 8V6C5 3.79086 6.79086 2 9 2H11C13.2091 2 15 3.79086 15 6V8M4 8H16C17.1046 8 18 8.89543 18 10V16C18 17.1046 17.1046 18 16 18H4C2.89543 18 2 17.1046 2 16V10C2 8.89543 2.89543 8 4 8Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                    <input type="password" id="password" formControlName="password" placeholder="Enter your password">
+                </div>
+                <div *ngIf="isFormControlError('password')" class="error-message">
+                    Password is required
+                </div>
+            </div>
+
+            <div class="form-footer">
+                <a routerLink="/forgot-pwd" class="forgot-link">Forgot Password?</a>
+            </div>
+
+            <button type="submit" [disabled]="this.loginFormGroup.invalid" class="btn-submit">
+                <span>Sign In</span>
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+        </form>
+
+        <div class="card-footer">
+            <p>Don't have an account? <a routerLink="/register" class="register-link">Sign up</a></p>
+        </div>
+    </div>
+</div>
