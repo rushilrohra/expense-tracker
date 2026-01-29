@@ -35,11 +35,15 @@ public class AuthController {
     }
 
     @PostMapping("/forgot-password")
-    public void forgotPwd(@RequestBody Map<String,String> body){
+    public ResponseEntity<Map<String,String>> forgotPwd(@RequestBody Map<String,String> body){
         try {
             authService.forgotPwd(body);
+            return ResponseEntity.ok().body(Map.of("Body","Success"));
+
         } catch (InvalidEmailException e) {
             logger.info(String.valueOf(e));
+            return ResponseEntity.badRequest().body(Map.of("Body",e.getMessage()));
+
         }
     }
 
@@ -48,5 +52,8 @@ public class AuthController {
         authService.validateToken(body);
     }
 
-
+    @PutMapping("/reset-password")
+    public void resetPassword(@RequestBody Map<String,String> body){
+        authService.resetPassword(body);
+    }
 }

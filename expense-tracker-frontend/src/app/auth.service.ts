@@ -11,6 +11,8 @@ export class AuthService {
   private loginUrl = "http://localhost:8080/login";
   private forgotPwd = "http://localhost:8080/forgot-password"
   private validatePwd = "http://localhost:8080/validate-token"
+  
+  private resetPwd = "http://localhost:8080/reset-password"
   registerUser(user:any){
     console.log(user);
     return this.http.post(this.registerUrl,user);
@@ -20,10 +22,13 @@ export class AuthService {
     return this.http.post(this.loginUrl,email,password);
   }
 
-  resetPwd(email:any){
-    return this.http.post(this.forgotPwd,email);
+  resetPassword(newPassword:any, token:any){
+    return this.http.put(this.resetPwd,{newPassword, token});
   }
   validateToken(token:any){
     return this.http.post(this.validatePwd,{token});
+  }
+  forgotPassword(email:any){
+    return this.http.post(this.forgotPwd,{email});
   }
 }

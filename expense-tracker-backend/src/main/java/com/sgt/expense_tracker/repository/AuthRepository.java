@@ -71,7 +71,7 @@ public class AuthRepository {
     }
 
     public Integer validateToken(String token){
-        String query="SELECT user_id FROM Auth_Tokens WHERE expiry > CURRENT_TIMESTAMP AND token = token AND used_yn = 0";
+        String query="SELECT user_id FROM Auth_Tokens WHERE expiry > CURRENT_TIMESTAMP AND token = ? AND used_yn = 0";
 
         try{
             return jdbcTemplate.queryForObject(query, Integer.class, token);
@@ -79,5 +79,12 @@ public class AuthRepository {
             return null;
         }
 
+    }
+
+    public void resetPassword(String token, String password){
+        String query = "UPDATE Users JOIN Auth_Tokens ON users.id = Auth_Tokens.user_id SET Users.password = ? WHERE Auth_Tokens.token = ?";
+        jdbcTemplate.update(query,password,token);
+        query = "UPDATE auth_tokens SET used_yn = 1 WHERE token = ?";
+        jdbcTemplate.update(query,token);
     }
 }

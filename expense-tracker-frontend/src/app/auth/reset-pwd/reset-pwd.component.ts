@@ -38,9 +38,22 @@ export class ResetPwdComponent {
   }
 
   resetPassword() {
-
-    // this.token = this.route.snapshot.paramMap.get("token")
-
+    if (this.resetPwdGroup.valid) {
+      const newPassword = this.resetPwdGroup.value.newPassword;
+      this.token = this.route.snapshot.paramMap.get("token");
+    this.authService.validateToken(this.token).subscribe({
+      next : (data:any) => {
+        this.authService.resetPassword(newPassword,this.token).subscribe(()=>{
+          alert("Your Password is Successfuly reset");
+          this.router.navigate(['/login']);
+        })
+      },
+      error : () => {
+        alert("Your token is invalid");
+        this.router.navigate(['/login']);
+      }
+    })      
+    }
   }
 
   

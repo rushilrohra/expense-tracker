@@ -67,7 +67,7 @@ public class AuthService {
             throw new InvalidEmailException();
         }
         String token = UUID.randomUUID().toString();
-        LocalDateTime expiry = LocalDateTime.now().plusMinutes(5);
+        LocalDateTime expiry = LocalDateTime.now().plusMinutes(15);
 
         int res = authRepository.saveToken(token,expiry,user.getId());
         if(res == 1){
@@ -81,5 +81,11 @@ public class AuthService {
         authRepository.validateToken(token);
     }
 
+    public void resetPassword(Map<String,String> body){
+        String token = body.get("token");
+        String password = body.get("password");
+
+        authRepository.resetPassword(token, password);
+    }
 
 }

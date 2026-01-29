@@ -24,13 +24,15 @@ export class ForgotPwdComponent {
 
   body:any;
 
+  
+  errorMessage = ""
   sendResetLink() {
-    // if (this.forgotFormGroup.valid) {
-    //   this.authService.resetPwd(this.forgotFormGroup.get("email")?.value).subscribe(()=>{
-    //     next: ()=> {this.body = "Email sent to your id"},
-    //     error: (err: any)=> this.body = "Email invalid"
-        
-    //   })  
-    // }
+    if (this.forgotFormGroup.valid) {
+      console.log('Sending reset link to:', this.forgotFormGroup.value.email);
+      this.authService.forgotPassword(this.forgotFormGroup.value.email).subscribe({
+        next : () => alert("Email has been sent to your id"),
+        error : () => this.errorMessage = "Some Error Occurred"
+      })
+    }
   }
 }
